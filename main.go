@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -52,5 +53,13 @@ func (k *Keranjang) TampilkanKeranjang(filterNama string, filterKuantitas int) [
 }
 
 func main() {
-	
+	req := gin.Default()
+
+	req.GET("/keranjang", func(ctx *gin.Context) {
+		filterNama := ctx.Query("namaproduk")
+		filterKuantitas := ctx.DefaultQuery("count", "0")
+		count, _ := strconv.Atoi(filterKuantitas)
+
+		ctx.JSON(200, keranjang.TampilkanKeranjang(filterNama, count))
+	})
 }
