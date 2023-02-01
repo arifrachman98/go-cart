@@ -9,7 +9,7 @@ import (
 type Produk struct {
 	KodeProduk string `json:"kodeproduk"`
 	NamaProduk string `json:"namaproduk"`
-	Kuantitas string `json:"kuantitas"`
+	Kuantitas int `json:"kuantitas"`
 }
 
 type Keranjang struct {
@@ -35,6 +35,20 @@ func (k *Keranjang) HapusProduk(kode string)  {
 			return
 		}
 	}
+}
+
+func (k *Keranjang) TampilkanKeranjang(filterNama string, filterKuantitas int) []Produk {
+	var hasil []Produk
+	for _, p := range k.Produk {
+		if filterNama != "" && p.NamaProduk != filterNama {
+			continue
+		}
+		if filterKuantitas > 0 && p.Kuantitas != filterKuantitas {
+			continue
+		}
+		hasil = append(hasil, p)
+	}
+	return hasil
 }
 
 func main() {
