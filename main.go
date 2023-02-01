@@ -62,4 +62,16 @@ func main() {
 
 		ctx.JSON(200, keranjang.TampilkanKeranjang(filterNama, count))
 	})
+
+	req.POST("/keranjang", func(ctx *gin.Context) {
+		var produk Produk
+		if err := ctx.ShouldBindJSON(&produk); err != nil {
+			ctx.JSON(400, gin.H{"error":err.Error()})
+			return
+		}
+
+		keranjang.TambahProduk(produk)
+		ctx.JSON(200, gin.H{"pesan":"Produk berhasil ditambahkan"})
+	})
+	
 }
