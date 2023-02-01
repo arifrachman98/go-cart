@@ -71,7 +71,14 @@ func main() {
 		}
 
 		keranjang.TambahProduk(produk)
-		ctx.JSON(200, gin.H{"pesan":"Produk berhasil ditambahkan"})
+		ctx.JSON(200, gin.H{"Pesan":"Produk berhasil ditambahkan"})
 	})
-	
+
+	req.DELETE("/keranjang/:kodeproduk", func(ctx *gin.Context) {
+		kodeP := ctx.Param("kodeproduk")
+		
+		keranjang.HapusProduk(kodeP)
+		ctx.JSON(200, gin.H{"Pesan":"Produk berhasil dihapus"})
+	})
+
 }
