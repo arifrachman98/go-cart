@@ -81,4 +81,9 @@ func main() {
 		ctx.JSON(200, gin.H{"Pesan":"Produk berhasil dihapus"})
 	})
 
+	err := req.Run()
+	if err != nil {
+		fmt.Println(err)
+	}
+
 }
