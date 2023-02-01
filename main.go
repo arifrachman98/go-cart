@@ -28,6 +28,15 @@ func (k *Keranjang) TambahProduk(produk Produk)  {
 	k.Produk = append(k.Produk, produk)
 }
 
+func (k *Keranjang) HapusProduk(kode string)  {
+	for i, p := range k.Produk {
+		if p.KodeProduk == kode {
+			k.Produk = append(k.Produk[:i], k.Produk[i+1:]...)
+			return
+		}
+	}
+}
+
 func main() {
 	
 }
