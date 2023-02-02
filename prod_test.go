@@ -32,3 +32,25 @@ func TestTambahProduk(t *testing.T) {
 	assert.Equal(t, 102, keranjang.Prod[1].Kuantitas)
 }
 
+func TestHapusProduk(t *testing.T) {
+	keranjang := &Keranjang{
+		Prod: []Produk{
+			{
+				KodeProduk: "A001",
+				NamaProduk: "Sepatu Tali",
+				Kuantitas: 10,
+			},
+			{
+				KodeProduk: "A002",
+				NamaProduk: "Sepatu Balet",
+				Kuantitas: 50,
+			},
+		},
+	}
+	
+	keranjang.HapusProduk("A001")
+	assert.Len(t, keranjang.Prod, 1)
+	assert.Equal(t, "A002", keranjang.Prod[0].KodeProduk)
+	assert.Equal(t, "Sepatu Balet", keranjang.Prod[0].NamaProduk)
+	assert.Equal(t, 50, keranjang.Prod[0].Kuantitas)
+}
