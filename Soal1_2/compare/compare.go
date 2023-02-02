@@ -45,3 +45,13 @@ func oneEditAway(s1, s2 string) bool {
 	return false
 }
 
+func Compare() {
+	s1 := ""
+	s2 := ""
+
+	fmt.Print("Masukan String 1 : ")
+	fmt.Scanln(&s1)
+	fmt.Print("Masukan String 2 : ")
+	fmt.Scanln(&s2)
+	fmt.Println("Hasil : ", oneEditAway(s1, s2))
+}
