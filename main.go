@@ -14,25 +14,25 @@ type Produk struct {
 }
 
 type Keranjang struct {
-	Produk []Produk
+	Prod []Produk
 }
 
 var keranjang = &Keranjang{}
 
 func (k *Keranjang) TambahProduk(produk Produk) {
-	for i, p := range k.Produk {
+	for i, p := range k.Prod {
 		if p.KodeProduk == produk.KodeProduk {
-			k.Produk[i].Kuantitas += produk.Kuantitas
+			k.Prod[i].Kuantitas += produk.Kuantitas
 			return
 		}
 	}
-	k.Produk = append(k.Produk, produk)
+	k.Prod = append(k.Prod, produk)
 }
 
 func (k *Keranjang) HapusProduk(kode string) {
-	for i, p := range k.Produk {
+	for i, p := range k.Prod {
 		if p.KodeProduk == kode {
-			k.Produk = append(k.Produk[:i], k.Produk[i+1:]...)
+			k.Prod = append(k.Prod[:i], k.Prod[i+1:]...)
 			return
 		}
 	}
@@ -40,7 +40,7 @@ func (k *Keranjang) HapusProduk(kode string) {
 
 func (k *Keranjang) TampilkanKeranjang(filterNama string, filterKuantitas int) []Produk {
 	var hasil []Produk
-	for _, p := range k.Produk {
+	for _, p := range k.Prod {
 		if filterNama != "" && p.NamaProduk != filterNama {
 			continue
 		}
