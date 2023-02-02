@@ -33,3 +33,15 @@ func oneEditReplace(s1, s2 string) bool {
 	return true
 }
 
+func oneEditAway(s1, s2 string) bool {
+	if len(s1) == len(s2) {
+		return oneEditReplace(s1, s2)
+	} else if len(s1)+1 == len(s2) {
+		return oneEditInsert(s1, s2)
+	} else if len(s1)-1 == len(s2) {
+		return oneEditInsert(s2, s1)
+	}
+
+	return false
+}
+
